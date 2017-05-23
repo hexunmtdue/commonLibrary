@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	</head>
+	<body>
+		<link rel="stylesheet" href="https://i4.hexun.com/2016/app/css/common.0.0.1.min.css?t=1,487,234,026,357">
+		<link rel="stylesheet" href="https://i5.hexun.com/2016/app/css/recommendation.0.0.1.min.css?t=1,487,234,026,357">
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+			}
+			body {
+				font-size: 16px;
+				position: relative;
+				padding: 0;
+				margin: 0;
+				overflow: scroll;
+				overflow-x: hidden;
+			}
+			.header {
+				position:fixed;
+				top:0;
+				left:0;
+				right:0;
+				height:3.75rem;
+				background:rgba(220,220,220,1);
+				z-index:99999;
+			}
+			.iscroll_main_context {
+				margin-top:3.75rem;
+				z-index: 1;
+				transform: translate3d(0, -3rem, 0);
+				transition-duration:0.5s;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			}
+			.iscroll_main_context ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				text-align: left;
+			}
+			.iscroll_main_context li {
+				padding: 0 0.625rem;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				border-bottom: 0.0625rem solid #ccc;
+				border-top: 0.0625rem solid #fff;
+				background-color: #fafafa;
+			}
+			#pullDown, #pullUp {
+				height: 3rem;
+				line-height: 3rem;
+				font-weight: bold;
+				font-size: 1rem;
+				color: #888;
+				text-align: center;
+				display: block;
+				position: relative;
+			}
+		</style>
+		<div class="header"></div>
+		<div class="iscroll_main" id="wrapper">
+			<div class="iscroll_main_context" id="scroller">
+				<span id="pullDown">下拉刷新</span>
+				<div class="newscontent">
+                
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i0.hexun.com/2014-09-04/168191568.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">8个壁纸样品试验不合格</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">新文化报</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i9.hexun.com/2014-09-16/168527133.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">02月13日上海金交所Pt99.95价格238.00</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">和讯黄金</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">日本政府商讨“促销星期五”经济构想</h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i8.hexun.com/2016-11-07/186775760.jpg" _src="http://vdata.tool.hexun.com/2016-11-07/186775759.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">阿尔法量化团队：2月14日期货高清图 </h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g1.hexun.com/2017-02-13/188123081.png" alt=""></div>
+			                <div class="img2"><img src="http://g2.hexun.com/2017-02-13/188123082.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g2.hexun.com/2017-02-13/188123084.jpg" alt=""> <span class="picnum">10</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">神光投顾：V型反击 反弹或延续</h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g4.hexun.com/2017-02-08/188045282.jpg" alt=""></div>
+			                <div class="img2"><img src="http://g1.hexun.com/2017-02-08/188045283.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g4.hexun.com/2017-02-08/188045284.jpg" alt=""> <span class="picnum">6</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			        </div>
+			        
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">【五维交易】0721交易推荐</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">房产</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i2.hexun.com/2014-09-04/168191861.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">三类股东问题获反馈 新三板魔性死循环破冰</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">中国证券报</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i6.hexun.com/2017-02-13/188112703.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">曝光渲染图 中兴Quartz智能手表将发布</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">中关村在线</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">11.8黄金继续看空！ </h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i7.hexun.com/2016-11-08/186791185.png" _src="http://vdata.tool.hexun.com/2016-11-08/186791184.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">上海：热闹“双11”伤心“太平洋”</h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i1.hexun.com/2016-11-10/186825278.jpg" _src="http://vdata.tool.hexun.com/2016-11-10/186825277.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">夸克聚合：日元增值速度减缓 防美日大范围反弹</h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g4.hexun.com/2017-02-09/188058252.jpg" alt=""></div>
+			                <div class="img2"><img src="http://g4.hexun.com/2017-02-09/188058253.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g1.hexun.com/2017-02-09/188058254.jpg" alt=""> <span class="picnum">5</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			            <span class="comnum"><i>1</i> 评</span>
+			        </div>
+			        
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">天下金柜无卡支付 0.36秒到</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">股票</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">消息资讯</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">期货</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i3.hexun.com/2015-01-07/172119829.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">云南去年机场3项指标创新高</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">云南网</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">中国发布地方债风险应急处置预案</h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i5.hexun.com/2016-11-15/186892363.jpg" _src="http://vdata.tool.hexun.com/2016-11-15/186892362.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">罗家鑫：2月10日期货交易策略</h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g4.hexun.com/2017-02-09/188060259.jpg" alt=""></div>
+			                <div class="img2"><img src="http://g4.hexun.com/2017-02-09/188060260.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g3.hexun.com/2017-02-09/188060261.jpg" alt=""> <span class="picnum">22</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">敬松：美元一波三折 日元触底回升</h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g1.hexun.com/2017-02-10/188073106.jpg" alt=""></div>
+			                <div class="img2"><img src="http://g3.hexun.com/2017-02-10/188073108.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g0.hexun.com/2017-02-10/188073109.jpg" alt=""> <span class="picnum">8</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			            <span class="comnum"><i>-1</i> 评</span>
+			        </div>
+			        
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">金烁解盘：8.30早评银油气行情分析及操作建议</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">期货</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i5.hexun.com/2015-03-04/173736630.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">微软等美硅谷巨头避税花招:每年少缴15亿美元</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">新华网</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i5.hexun.com/2017-02-13/188114323.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">养元饮品营销独腿三冲IPO 六个核桃缺干货难补脑</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">中国经济网</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">美国代表 两次起立为习主席演讲鼓掌 点赞中国方案</h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i4.hexun.com/2016-11-21/186986867.jpg" _src="http://vdata.tool.hexun.com/2016-11-21/186986864.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">胡任标：震荡回调宜守3218.15点</h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i6.hexun.com/2016-11-24/187047361.jpg" _src="http://vdata.tool.hexun.com/2016-11-24/187047360.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">八戒团队：2月10日期货交易策略</h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g1.hexun.com/2017-02-09/188060673.jpg" alt=""></div>
+			                <div class="img2"><img src="http://g3.hexun.com/2017-02-09/188060676.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g1.hexun.com/2017-02-09/188060678.jpg" alt=""> <span class="picnum">18</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			        </div>
+			        
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">哈哈哈，听说你也想学创业！</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">理财</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">吴旺鑫：非农前，黄金原油只能这样了</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">黄金</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i8.hexun.com/2017-02-13/188115827.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">超级周！耶伦、恐怖数据、通胀 金融市场恐巨震</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">FX168</span>
+				                    <span class="fr"><i>1</i> 评</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="newsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://i4.hexun.com/2014-11-10/170219202.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">技术变革对国家发展影响重大</a></h2>
+			                    <div class="comtime clearfix"> 
+				                    <span class="fl time">中国民商</span>
+			                    </div>
+			                </dd>
+			            </dl>
+			        </div>
+			        
+			        <div class="videobox clearfix">			        
+			            <h2 class="titleh2">2016.11.28 外汇 黄金 白银 原油解盘 </h2>
+			            <div class="videoimg" type-open="true">
+			            <img src="http://i4.hexun.com/2016-11-28/187093954.jpg" _src="http://vdata.tool.hexun.com/2016-11-28/187093953.mp4" alt="">
+                            <div class="videoicon"></div>
+			            </div>
+			            <span class="taggrey mg-l1">视频</span>
+			        </div>
+			        
+			        <div class="picturesbox clearfix">
+			            <h2 class="pictitleh2">乡村牛童：2月14日操盘策略</h2>
+			            <div class="imgpox clearfix">
+			                <div class="img1"><img src="http://g2.hexun.com/2017-02-13/188122354.jpg" alt=""></div>
+			                <div class="img2"><img src="http://g0.hexun.com/2017-02-13/188122352.jpg" alt=""></div>
+			                <div class="img3"> <img src="http://g0.hexun.com/2017-02-13/188122353.jpg" alt=""> <span class="picnum">22</span></div>
+			            </div> 
+			            <span class="taggrey">组图</span> 
+			        </div>
+			        
+			        <div class="blognewsbox clearfix">
+			            <dl class="comdl clearfix"><dt class="comdt"> <img src="http://logo1.tool.hexun.com/1c93eb3-150.jpg" alt="" class="img-rsp"></dt>
+			                <dd class="comdd">
+			                    <h2 class="comh"><a href="#">何默瑜：8.30冻产协议遭质疑，白银天然气操作策略</a></h2>
+			                    <div class="comtime clearfix"> <span class="fl time">期货</span></div>
+			                </dd>
+			            </dl> 
+			            <span class="taggrey">博文</span>
+			        </div>
+	
+	               <div class="refurbishbox">
+	                    <p>刚刚看到这里<span id="clickDown">点击刷新</span></p>
+	               </div>
+                    
+                </div>
+				<span id="pullUp">正在加载...</span>
+			</div>
+		</div>
+		<script src="../libs/jquery.2.2.0.js"></script>
+		<script>
+			var ua = window.navigator.userAgent.toLowerCase();
+			var iscroll = function(elem, options) {
+				return new iscroll.fn.init(elem, options);
+			};
+			iscroll.fn = iscroll.prototype = {
+				init: function(elem, options) {
+					jQuery.extend(this, jQuery.extend(options, {
+						parent: jQuery(elem),
+						content: jQuery(options.content),
+						upElem: jQuery(options.upElem),
+						downElem: jQuery(options.downElem)
+					}));
+					this.topOffset = this.upElem.height();
+					this.bottomOffset = this.downElem.height();
+					this.maxscroll = this.parent.height();
+					var that = this;
+					return this;
+				},
+				done: function(callback) {
+					var that = this;
+					var start = {},
+						delta = {},
+						end = {};
+					jQuery(window).on("scroll", function(e) {
+						this.timeout && clearTimeout(this.timeout);
+						this.timeout = setTimeout(function() {
+							var top = jQuery(this).scrollTop();
+							if (top > 0 && top + screen.height - that.topOffset >= that.parent[0].scrollHeight) {
+								that.loadMore && that.loadMore.call(that);
+							}
+						}, 500);
+					})
+					that.parent[0].ontouchstart = function(e) {
+						var touches = e.touches[0];
+						start = {
+							x: touches.pageX,
+							y: touches.pageY
+						};
+						delta = {};
+						this.delta = this.delta || delta;
+						that.parent[0].ontouchmove = function(e) {
+							/android/.test(ua) && e.preventDefault()
+							var touches = e.touches[0];
+							end = {
+								x: touches.pageX,
+								y: touches.pageY
+							};
+							delta = {
+								x: touches.pageX - start.x,
+								y: touches.pageY - start.y
+							};
+							var top = jQuery(window).scrollTop();
+							if (top<=5) {
+								if (delta.y > 0 && Math.abs(delta.y) < 50){
+									that.animate(0, delta.y);
+								}else if (!/iphone/.test(ua)){
+									(/iphone/.test(ua) ? window : that).scrollTo(0, top<=0 ? top-that.topOffset*2-delta.y : top-delta.y, delta)
+								}
+							}else{
+								(/iphone/.test(ua) ? window : that).scrollTo(0, top-that.topOffset*2-delta.y, delta)
+							}
+							this.delta = delta;
+							that.touchMove && that.touchMove.call(that, Math.abs(delta.y));
+						};
+						that.parent[0].ontouchend = function(e) {
+							var self = this;
+							var top = jQuery(window).scrollTop();
+							if (top < 2 && Math.abs(self.delta.y) >= 50){
+								if (that.touchEnd) {
+									setTimeout(function(){
+										that.touchEnd.call(that, self.delta.y, function() {
+											that.animate(0,0);
+										}, function() {
+											that.animate(0,"-"+that.topOffset);
+										})
+									},100)
+								}
+							}else{
+								that.animate(0,"-"+that.topOffset);
+							}
+							that.parent[0].ontouchend = that.parent[0].ontouchmove = null;
+						};
+					};
+					return this;
+				},
+				scrollTo: function(x, y, delta){
+					console.log(y)
+					this.timeout && clearTimeout(this.timeout);
+					this.timeout = setTimeout(function(){
+						iscroll.scrollAni(x, y, delta);
+					},100)
+				},
+				animate: function(x,y, bool){
+					this.content.css(!bool ?{
+						transform: "translate3d("+x+", "+y+"px, 0)",
+						transitionDuration:"0.5s"
+					}:{
+						transform: "translate("+x+"px, " + y + "px) translateZ(0px)",
+						transitionDuration:"0.2s"
+					});
+					return this;
+				}
+			};
+			iscroll.scrollAni = function(x, y){
+				var that = this;
+				that.interval && clearInterval(that.interval);
+				var ax = x, ay = jQuery(window).scrollTop(), time = 6, timeVal = 3;
+				this.endValue = y;
+				that.interval = setInterval(function(){
+					if (ay>y){
+						ay-=timeVal;
+						if (ay>=y){
+							window.scrollTo(ax,ay);
+						}else{
+							clearInterval(that.interval)
+						}
+					}else{
+						ay+=timeVal;
+						if (ay<=y){
+							window.scrollTo(ax,ay);
+						}else{
+							clearInterval(that.interval)
+						}
+					}
+					//jQuery(".header").html(ay+","+y)
+				}, time);
+			};
+			iscroll.fn.init.prototype = iscroll.fn;
+			iscroll("#wrapper", {
+				content: "#scroller",
+				upElem: "#pullDown",
+				downElem: "#pullUp",
+				refreshData: function(loading, loaded) {
+					this.upElem.html("正在加载...")
+					loading();
+					setTimeout(function() {
+						loaded();
+						alert("load...")
+					}, 1000);
+				},
+				touchMove: function(y) {
+					if (y >= 50) {
+						this.upElem.html("松开刷新");
+					} else {
+						this.upElem.html("下拉刷新");
+					}
+				},
+				touchEnd: function(y, loading, loaded) {
+					if (y >= 50) {
+						this.refreshData(loading, loaded);
+					} else {
+						this.upElem.html("下拉刷新");
+						loaded();
+					}
+				},
+				loadMore: function() {
+					alert("loadmore")
+				}
+			}).done(function() {
+			});
+		</script>
+	</body>
+</html>

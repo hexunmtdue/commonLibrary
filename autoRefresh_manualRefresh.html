@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自动、手动刷新demo</title>
+	</head>
+	<body>
+		<script>
+			(function(win){
+				var a = false,b = "1", d = function(){
+					if (!a){
+						clearInterval(c);
+					}else{
+						jsonp("url?a="+b, function(data){
+							console.log(data)
+						}, function(){
+
+						});
+					}
+				},c = setInterval(d, 5000), jsonp = function(url, success, error){
+					console.log(url);
+					success([{a:1}]);
+				};
+				d();
+			})(this)
+		</script>
+	</body>
+</html>

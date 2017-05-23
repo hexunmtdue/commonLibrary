@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			html{font-size:16px;}
+			body{background:rgb(239,239,239);}
+			body,h1,p{padding:0;margin:0;font-weight:400;}
+			a{color:rgb(0,0,0);text-decoration:none;}
+			.page, p{font-size:.8rem;}
+			.page img{width:10.3125rem;height:7.3125rem;}
+			.clearfx{display:block;clear: both;}
+			.item{background:rgb(255,255,255);position:relative;min-height:7.3125rem;overflow:hidden;margin:0.625rem 0;padding:0.625rem;}
+			.item_left{position:absolute;top:0.625rem;right:0.625rem;}
+			.item_right{margin-right:10.9375rem;}
+			.item_title{height:4.6rem;overflow:hidden;font-size:1.2rem;}
+			.item_desc{color:rgb(153,153,153);margin:1rem 0 0;height:1rem;overflow:hidden;}
+			.morepic .item_title{height:1.5rem;width:100%;overflow:hidden;}
+			.morepic .item_left{display: flex; flex-flow: row; position: relative;width:100%;margin:0 0.625rem;}
+			.morepic .item_left img{float:left;width:32.33%;height:6.3125rem;margin-right:1%;}
+			.morepic .item_right{margin-right:0;}
+			.morepic .item_desc{color:rgb(153,153,153);overflow:hidden;padding:0;height:auto;}
+			.video .item_title{height:1.5rem;width:100%;overflow:hidden;}
+			.video .item_left{display:block;position:relative;width:100%;margin:0 0.625rem;}
+			.video .item_left img{width:100%;height:16.125rem;}
+			.video .item_right{margin-right:0;}
+			.video .item_desc{color:rgb(153,153,153);overflow:hidden;padding:0;height:auto;}
+			.loadmore{width:100%;height:3.75rem;font-size:1rem;border:0;background:rgb(239,239,239);}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<div id="main">
+			</div>
+			<button id="loadmore" class="loadmore">加载更多</button>
+		</div>
+		<script type="text/html" id="recommend_template">
+			<article id="{{itemid}}" class="item clearfx">
+				<header class="item_right">
+					<h1 class="item_title"><a href="{{newsUrl}}" n-datagrand="rec_click" target="_blank">{{title}}</a></h1>
+					<p class="item_desc">{{mediaName}} - {{item_modify_time}}</p>
+				</header>
+				<div class="item_left">
+					<a href="{{newsUrl}}" target="_blank" n-datagrand="rec_click"><img src="{{newsPicture}}" alt="{{title}}" title="{{title}}" /></a>
+				</div>
+			</article>
+		</script>
+		<script type="text/html" id="recommend_morepic_template">
+			<article id="{{itemid}}" class="item clearfx morepic">
+				<header class="item_right">
+					<h1 class="item_title"><a href="{{newsUrl}}" n-datagrand="rec_click" target="_blank">{{title}}</a></h1>
+				</header>
+				<div class="item_left">
+					<a href="{{newsUrl}}" target="_blank" n-datagrand="rec_click"><img src="{{newsPicture0}}" alt="{{title}}" title="{{title}}" /><img src="{{newsPicture1}}" alt="{{title}}" title="{{title}}" /><img src="{{newsPicture2}}" alt="{{title}}" title="{{title}}" /></a>
+				</div>
+				<p class="item_desc">{{mediaName}} - {{item_modify_time}}</p>
+			</article>
+		</script>
+		<script type="text/html" id="recommend_video_template">
+			<article id="{{itemid}}" class="item clearfx video">
+				<header class="item_right">
+					<h1 class="item_title"><a href="{{newsUrl}}" n-datagrand="rec_click" target="_blank">{{title}}</a></h1>
+				</header>
+				<div class="item_left">
+					<img src="{{newsPicture}}" data-video="{{mp4}}" alt="{{title}}" />
+				</div>
+				<p class="item_desc">{{mediaName}} - {{item_modify_time}}</p>
+			</article>
+		</script>
+		<script>
+			try{
+			var api ={
+				getmorerecommend:"http://aaa?start={{start}}&cnt={{num}}"
+			},
+			jsonp = function(url, success, error, ops) {
+				var head = document.getElementsByTagName("head")[0],
+					callback = "api_" + (Math.random(10000) + "").replace(".", "");
+				while (window[callback]) {
+					callback = "api_" + (Math.random(10000) + "").replace(".", "");
+				}
+				try {
+					var script = document.createElement("script");
+					head.appendChild(script);
+					script.timeout = setTimeout(function() {
+						if (window[callback] != null) {
+							window[callback] = null;
+							head.removeChild(document.getElementById(callback));
+							error("timeout " + callback);
+						}
+					}, ops && ops.timeout || 3000);
+					script.id = callback;
+					script.src = url + (/\?/.test(url) ? "&" : "?") + (ops && ops.callback || "callback") + "=" + callback;
+					script.onload = function(a) {
+						//console.log(arguments)
+					};
+					script.onerror = function() {
+						head.removeChild(this);
+						window[callback] = null;
+						error("error");
+					};
+					window[callback] = function(data) {
+						window[callback] = null;
+						var elem = document.getElementById(callback)
+						elem.parentNode.removeChild(elem);
+						try {
+							data = data || new Function('return ' + data)();
+							console.log(callback)
+							success(data);
+						} catch (e) {
+							error(e.message);
+						}
+					};
+				} catch (e) {
+					error(e.message);
+				}
+			},
+			tmpl = function(str, data){
+				for (var name in data){
+					str = str.replace(new RegExp("\\{\\{\\s*"+name+"\\s*\\}\\}", "gim"), function(a){
+						a = data[name];
+						return a;
+					});
+				}
+				return str;
+			},
+			each = function(arr, callback){
+				var len = arr.length, i;
+				for (i=0;i<len;i++){
+					var result = callback.call(arr[i], i, arr[i]);
+					if (result === false){
+						break;
+					}
+				}
+			},
+			bindHandle = function(elem, eventName, fn) {
+				if (elem.attachEvent) {
+					elem.attachEvent("on" + eventName, fn);
+				} else if (elem.addEventListener) {
+					elem.addEventListener(eventName, fn, false)
+				} else {
+					elem["on" + eventName] = fn;
+				}
+			},
+			getCookieid = function(key) {
+				var aCookie = document.cookie.split(";"),
+					result = false;
+				each(aCookie, function(i, item) {
+					//console.log(item)
+					var aCrumb = item.split("=");
+					if (key === aCrumb[0].replace(/^\s*|\s*$/, "")) {
+						if (/aaa/.test(key)) {
+							result = unescape(aCrumb[2]).split("&")[0];
+						} else if (/bbb/.test(key)) {
+							var v = unescape(aCrumb[1]).split("|")[0];
+							if (typeof(v) != "undefined" && v != "") {
+								result = v;
+							}
+						} else if (/ccc/.test(key)) {
+							result = aCrumb[1];
+						}
+					}
+				})
+				return result ? result : 0;
+			},
+			cookies = [],
+			names = ["aaa", "bbb", "ccc"],
+			ua = navigator.userAgent.toLowerCase(),
+			isPC = !/iphone|android|ipad|ipod|mobile|linux/.test(ua) && !/\/\/m\.aaa\.com/.test(location.href);
+			//console.log("device:"+isPC);
+			each(names, function(i, item) {
+				var v = getCookieid(item);
+				cookies.push(v != 0 ? v : 0);
+			});
+			String.prototype.tmpl = function(data){
+				return tmpl(this, data);
+			};
+			String.prototype.toLocalTime = function(fmt){
+				var ntime = new Date();
+				ntime.setTime(parseInt(this)*1000);
+				return ntime.format(fmt);
+			};
+			Date.prototype.format = function(fmt) {
+				var o = {
+					"M+": this.getMonth() + 1,
+					"d+": this.getDate(),
+					"h+": this.getHours(),
+					"m+": this.getMinutes(),
+					"s+": this.getSeconds(),
+					"q+": Math.floor((this.getMonth() + 3) / 3),
+					"S": this.getMilliseconds()
+				};
+				if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+				for (var k in o)
+					if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+				return fmt;
+			};
+			var loadmore = function(start, done){
+				jsonp(api.getmorerecommend.tmpl({
+					start: start || 0,
+					num: 10
+				})+(cookies.length>0 ? (cookies[isPC ? 0 : 2] != 0 && ("&cid=" + cookies[isPC ? 0 : 2]) || "") : ""), function(result){
+					if (result.status === 1 && result.data.length>0){
+						var a = document.getElementById("recommend_template"),
+							b = document.createDocumentFragment();
+						each(result.data, function(i, item){
+							var c = document.createElement("div"),
+								picReg = /\.png|\.jpg|\.gif|\.jpeg/gim,
+								e = /http[s]*\:\/\/([^\.\/]+)\.aaa\.com/.exec(item.newsUrl);
+							item["item_modify_time"] = (item["item_modify_time"]+"").toLocalTime("yyyy-MM-dd");
+							!isPC && e && (item.newsUrl = "//m.aaa.com/" + item.newsUrl.replace(e[0], e[1]));
+							console.log(item.newsSubtype)
+							if (item.newsSubtype == "5"){
+								a = document.getElementById("recommend_morepic_template");
+								each([0,1,2], function(n, p){
+									var pic = item.newsPics.split(',')[n],
+										d = picReg.exec(pic);
+									pic = "//minimg.aaa.com/" + pic.replace(/http[s]*\:\/\//gim, "").replace(picReg, "") + "_c196x140" + (d && d[0] || ".jpg");
+									item["newsPicture"+n] = pic;
+								})
+							}else if (item.newsSubtype == "4"){
+								a = document.getElementById("recommend_video_template");
+							}else {
+								a = document.getElementById("recommend_template");
+								var d = picReg.exec(item.newsPicture);
+								item.newsPicture = item.newsPicture != "" ? "//minimg.aaa.com/" + item.newsPicture.replace(/http[s]*\:\/\//gim, "").replace(picReg, "") + "_c196x140" + (d && d[0] || ".jpg") : "https://i1.aaa.com/2016/pc/load.png";
+								if (item.newsSubtype == "-1"){
+									item.mediaName = item.username;
+								}
+							}
+							c.innerHTML = a.innerHTML.tmpl(item);
+							b.appendChild(c.children[0]);
+						});
+						var main = document.getElementById("main");
+						main.appendChild(b);
+					}else{
+						console.log("error")
+					}
+					done && done();
+				}, function(error){
+					console.log(error);
+					done && done();
+				}, {
+					timeout:5000
+				});
+			};
+			loadmore();
+			bindHandle(document.getElementById("loadmore"), "click", function(e){
+				var self = this;
+				if (!self["data-is"] || self["data-is"] == "0"){
+					self["data-is"] = "1";
+					loadmore(0, function(){
+						self["data-is"] = "0";
+					});
+				}
+			});
+		}catch(e){
+			alert(e)
+		}
+		</script>
+		<script src="track.js"></script>
+	</body>
+</html>

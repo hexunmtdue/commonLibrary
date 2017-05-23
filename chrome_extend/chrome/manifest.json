@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "手机和讯网",
+  "description": "手机和讯网用户提供最新最专业的财经资讯、视频，还有实时的股市行情、外汇期货基金等市场信息。",
+  "version": "1.0",
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "notifications"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "手机和讯网"
+  },
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+}
